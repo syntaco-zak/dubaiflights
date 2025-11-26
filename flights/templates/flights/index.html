@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Polls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'flights/flights.css' %}">
+</head>
+<body>
+    <div class="page-header">
+        <h1>Flight Polls</h1>
+    </div>
+
+    {% for flight in flights %}
+    <div class="flight">
+        <h2><a href="{% url 'flights:detail' flight.id %}">{{ flight.title }}</a></h2>
+        <p>{{ flight.description }}</p>
+        <p class="date">{{ flight.created_at }}</p>
+    </div>
+    {% empty %}
+    <p>No flights available.</p>
+    {% endfor %}
+</body>
+</html>

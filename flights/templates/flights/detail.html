@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ flight.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'flights/flights.css' %}">
+</head>
+<body>
+    <div class="page-header">
+        <h1>{{ flight.title }}</h1>
+    </div>
+
+    <form class="flight-form" action="{% url 'flights:vote' flight.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in flight.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        {% if error_message %}
+            <p style="color:red">{{ error_message }}</p>
+        {% endif %}
+        <input type="submit" value="Vote">
+    </form>
+
+    <a href="{% url 'flights:index' %}">Back to flights</a>
+</body>
+</html>
