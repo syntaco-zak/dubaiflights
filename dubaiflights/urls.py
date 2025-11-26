@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/flights/', permanent=False)),
     path("flights/", include("flights.urls")),
     path("admin/", admin.site.urls),
 ]
