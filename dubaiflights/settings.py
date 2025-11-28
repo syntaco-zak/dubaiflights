@@ -84,11 +84,14 @@ WSGI_APPLICATION = 'dubaiflights.wsgi.application'
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default=DATABASE_URL,
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dubaiflights_db',
+        'USER': 'dubaiflights_user',
+        'PASSWORD': 'Zakaria421',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 
