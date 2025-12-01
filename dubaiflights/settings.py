@@ -80,16 +80,11 @@ WSGI_APPLICATION = 'dubaiflights.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dubaiflights_db',
-        'USER': 'dubaiflights_user',
-        'PASSWORD': 'Zakaria421',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+DATABASES['default'] = dj_database_url.config(
+    default='postgres://dubaiflights_user:Zakaria421@localhost:5432/dubaiflights_db',
+    conn_max_age=600
+)
+
 
 
 # Password validation
