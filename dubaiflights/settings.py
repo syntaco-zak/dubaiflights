@@ -82,13 +82,13 @@ WSGI_APPLICATION = 'dubaiflights.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get(
-            'DATABASE_URL',
-            'postgres://dubaiflights_user:Zakaria421@localhost:5432/dubaiflights_db'
+            'DATABASE_URL',  # DigitalOcean will provide this
+            'postgres://postgres:Zakaria421@localhost:5432/dubaiflights_db'
         ),
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True,
     )
 }
-
 
 
 # Password validation
